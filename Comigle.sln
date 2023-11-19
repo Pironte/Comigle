@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comigle", "Comigle.csproj", "{628B7237-3BFC-4105-88FE-6C67C28BD593}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{628B7237-3BFC-4105-88FE-6C67C28BD593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628B7237-3BFC-4105-88FE-6C67C28BD593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628B7237-3BFC-4105-88FE-6C67C28BD593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628B7237-3BFC-4105-88FE-6C67C28BD593}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF52A233-A360-494A-AC31-7FEF61D9E0E7}
+	EndGlobalSection
+EndGlobal
