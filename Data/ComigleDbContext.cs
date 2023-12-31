@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Comigle.Data
 {
-    public class GlobalDbContext : IdentityDbContext<User>
+    public class ComigleDbContext : IdentityDbContext<User>
     {
-        public GlobalDbContext(DbContextOptions<GlobalDbContext> opts) : base (opts)
+        public ComigleDbContext(DbContextOptions<ComigleDbContext> opts) : base (opts)
         {
         }
 

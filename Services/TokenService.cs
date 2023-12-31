@@ -29,7 +29,7 @@ namespace Comigle.Services
                 new Claim("LoginTimestamp", DateTime.UtcNow.ToString())
             };
 
-            var symetricSecurityKey = _configuration["SymetricSecurityKey"];
+            var symetricSecurityKey = _configuration["SymmetricSecurityKey"];
             if (symetricSecurityKey == null)
                 throw new NullReferenceException("Chave simétrica não informada");
 

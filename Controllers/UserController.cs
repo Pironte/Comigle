@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Comigle.Controllers
 {
     [ApiController]
-    [Route("[Controller")]
+    [Route("[Controller]")]
     public class UserController : ControllerBase
     {
         public UserService _userService { get; set; }
