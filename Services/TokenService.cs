@@ -39,7 +39,7 @@ namespace Comigle.Services
 
             var token = new JwtSecurityToken
                 (
-                expires: DateTime.Now.AddMinutes(50),
+                expires: DateTime.Now.AddDays(7),
                 claims: claims,
                 signingCredentials: signingCredentials
                 );

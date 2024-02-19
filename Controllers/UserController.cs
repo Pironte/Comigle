@@ -1,5 +1,7 @@
 ﻿using Comigle.Model.Dtos;
 using Comigle.Services;
+using ComigleApi.Model.Email;
+using ComigleApi.Model.Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,15 +21,29 @@ namespace Comigle.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register(CreateUserDto createUserDto)
         {
-            await _userService.Register(createUserDto);
-            return Ok("Usuário cadastrado com sucesso!");
+            var response = await _userService.Register(createUserDto);
+            return Ok(response);
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginUserDto loginUserDto)
         {
-            var token = await _userService.Login(loginUserDto);
-            return Ok(token);
+            var response = await _userService.Login(loginUserDto);
+            return Ok(response);
+        }
+
+        [HttpPost("SendEmailToResetPassword")]
+        public async Task<IActionResult> SendEmailToResetPassword(SendEmailRequest sendEmailRequest)
+        {
+            var response = await _userService.SendEmailToResetPassword(sendEmailRequest);
+            return Ok(response);
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequest resetPasswordRequest)
+        {
+            var response = await _userService.ResetPassword(resetPasswordRequest);
+            return Ok(response);
         }
 
         [HttpPost("LogOut")]

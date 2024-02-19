@@ -2,6 +2,7 @@ using Comigle.Data;
 using Comigle.Hubs;
 using Comigle.Model;
 using Comigle.Services;
+using ComigleApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<ComigleDbContext>(opts =>
     opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-// Configuração do identity
+// Configuraï¿½ï¿½o do identity
 builder.Services
     .AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<ComigleDbContext>()
@@ -25,10 +26,10 @@ builder.Services
 
 #endregion
 
-#region Autenticação
+#region AutenticaÃ§Ã£o
 var symetricSecurityKey = builder.Configuration["SymmetricSecurityKey"];
 if (symetricSecurityKey == null)
-    throw new ApplicationException("symetricSecurityKey não informado nos secrets contidos no csproj da aplicação");
+    throw new ApplicationException("symetricSecurityKey nï¿½o informado nos secrets contidos no csproj da aplicaï¿½ï¿½o");
 
 builder.Services.AddAuthentication(opts =>
 {
@@ -55,6 +56,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
@@ -77,12 +79,12 @@ if (app.Environment.IsDevelopment())
 // Sempre utilizar o Cors antes do MapHub
 app.UseCors("AllowSpecificOrigin");
 
-app.MapHub<ChatHub>("/chatHub");
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.MapControllers();
 
