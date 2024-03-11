@@ -18,6 +18,12 @@ namespace Comigle.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("estou vivo");
+        }
+
         [HttpPost("Register")]
         public async Task<IActionResult> Register(CreateUserDto createUserDto)
         {

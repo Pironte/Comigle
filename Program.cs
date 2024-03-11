@@ -12,11 +12,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 #region Banco de dados
-//var connectionString = builder.Configuration["ConnectionStrings:COMIGLE"];
-//builder.Services.AddDbContext<ComigleDbContext>(opts =>
-//{
-//    opts.UseNpgsql(connectionString);
-//});
+var connectionString = builder.Configuration["ConnectionStrings:COMIGLE"];
+builder.Services.AddDbContext<ComigleDbContext>(opts =>
+{
+    opts.UseNpgsql(connectionString);
+});
 
 // Configura��o do identity
 builder.Services
