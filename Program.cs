@@ -12,11 +12,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 #region Banco de dados
-var connectionString = builder.Configuration["ConnectionStrings:COMIGLE"];
-builder.Services.AddDbContext<ComigleDbContext>(opts =>
-{
-    opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
+//var connectionString = builder.Configuration["ConnectionStrings:COMIGLE"];
+//builder.Services.AddDbContext<ComigleDbContext>(opts =>
+//{
+//    opts.UseNpgsql(connectionString);
+//});
 
 // Configura��o do identity
 builder.Services
@@ -27,9 +27,9 @@ builder.Services
 #endregion
 
 #region Autenticação
-var symetricSecurityKey = builder.Configuration["SymmetricSecurityKey"];
+var symetricSecurityKey = builder.Configuration["AppSettings:SymmetricKey"];
 if (symetricSecurityKey == null)
-    throw new ApplicationException("symetricSecurityKey n�o informado nos secrets contidos no csproj da aplica��o");
+    throw new ApplicationException("symetricSecurityKey não informado nos secrets contidos no csproj da aplicaçãoo");
 
 builder.Services.AddAuthentication(opts =>
 {
@@ -45,6 +45,13 @@ builder.Services.AddAuthentication(opts =>
         ClockSkew = TimeSpan.Zero
     };
 });
+
+//builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+//{
+//    googleOptions.ClientId = "442201363497-hkqv12plg0pkcd14bpvptjvmejk4itd9.apps.googleusercontent.com";
+//    googleOptions.ClientSecret = "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";
+//});
+
 #endregion
 
 // Add services to the container.
@@ -61,7 +68,7 @@ builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://127.0.0.1:5500", "http://localhost:4200") // Substitua com a URL do seu cliente
+        builder => builder.WithOrigins("http://127.0.0.1:5500", "http://localhost:4200", "https://comigle-frontend.vercel.app") // Substitua com a URL do seu cliente
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
