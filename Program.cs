@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration["ConnectionStrings:COMIGLE"];
 builder.Services.AddDbContext<ComigleDbContext>(opts =>
 {
-    opts.UseNpgsql(connectionString);
+    opts.UseSqlServer(connectionString);
 });
 
 // Configura��o do identity
