@@ -4,10 +4,10 @@ namespace Comigle.Hubs
 {
     public class ChatHub : Hub
     {
-        public async Task Send(string message)
+        public async Task Send(string connectionId, string message)
         {
             Console.WriteLine(message);
-            await Clients.Others.SendAsync("Receive", message);
+            await Clients.Others.SendAsync("Receive", connectionId, message);
         }
     }
 }
