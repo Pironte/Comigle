@@ -17,6 +17,15 @@ namespace Comigle.Hubs
             await client.SendAsync("Receive", connectionId, message);
         }
 
+        public async Task SendMessage(string username, string connectionId, string message)
+        {
+            if (string.IsNullOrEmpty(connectionId))
+                return;
+
+            var client = Clients.Client(connectionId);
+            await client.SendAsync("ReceiveMessage", username, message);
+        }
+
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             RemoveUser(Context.ConnectionId);
